@@ -69,9 +69,9 @@ function AdminOrders() {
 
     <ProtectedAdmin>
       <Adminsidebar/>
-      <div className="overflow-x-auto sm:ml-64 py-6 mt-10">
+      <div className="overflow-x-auto sm:ml-64 py-6 mt-10 ">
           <div className="bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
-            <div className="w-full p-4 h-screen">
+            <div className="w-full p-4 h-screen mb-10">
               <div className="bg-white shadow-lg rounded-lg my-6 overflow-scroll">
                 <table className="w-full table-auto border-collapse rounded-lg overflow-auto">
                   <thead>

@@ -36,7 +36,7 @@ export default function Signuppage() {
       <>
       <Layout>
           
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-10">
+        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-20">
         <div className="border-1 sm:mx-auto sm:w-full sm:max-w-sm px-2 py-1 rounded-2xl">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <UserCircleIcon className="w-10 h-10 mx-auto"/>

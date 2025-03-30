@@ -29,21 +29,21 @@ export default function Navbar() {
 
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
-      <div className='fixed top-0 left-0  right-0 z-50 bg-gray-800'>
+    <Disclosure as="nav" >
+      <div className='fixed top-0 left-0  right-0 z-50' style={{backgroundColor:'#FAF1E6'}}>
 
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between z-300">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            {/* Mobile menu button*/}
+          {/* <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            Mobile menu button
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
               <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
             </DisclosureButton>
-          </div>
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          </div> */}
+          <div className="flex flex-1 items-center ">
             <div className="flex shrink-0 items-center">
               <Link to={'/'}>
               <img
@@ -54,8 +54,8 @@ export default function Navbar() {
               </Link>
         
             </div>
-            <div className='bg-gray-900 ml-3 p-2 text-gray-300 hover:bg-gray-700 hover:text-white'>
-              Compny name
+            <div className='ml-3 p-2 text-gray-900 hover:bg-gray-700 hover:text-black rounded' style={{backgroundColor:'#FDFAF6'}}>
+              Ecommerce
             </div>
             
             {/* <div className="hidden sm:ml-6 sm:block">
@@ -84,34 +84,40 @@ export default function Navbar() {
               role === 'user' && (
                 <button
                 type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
+                className="relative rounded-ful p-1 text-gray-800 hover:text-black focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden rounded-full" style={{backgroundColor:'#FDFAF6'}}
               >
                 <ShoppingCartIcon aria-hidden="true" className="size-6" />
-                <span>{cartitem.length}</span>
+                <span className='absolute -top-2.5 right-0 text-black'>{cartitem.length}</span>
               </button>
               )
             }
+
         
             </Link>
-            <Link to={'Loginpage'}>
-            <button
-              type="button"
-              className=" bg-gray-900 text-white' : 'text-white hover:bg-gray-700 hover:text-white',
-                      'rounded px-3 py-2 text-sm font-medium text-white ml-2"
-            >
-              Login
-            </button>
-            </Link>
+            {
+              role !== 'user' && (
+                <Link to={'Loginpage'}>
+                <button
+                  type="button"
+                  className="rounded px-3 py-2 text-sm font-medium text-black cursor-pointer ml-2"
+                          style={{backgroundColor:'#FDFAF6'}}
+                >
+                  Login
+                </button>
+                </Link>
+              )
+            }
+       
           
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
               <div>
-                <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+                <MenuButton className="relative flex rounded-full text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden cursor-pointer"  style={{backgroundColor:'#FDFAF6'}}>
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
                   <img
                     alt=""
-                    src={<UserIcon />}
+                    src='https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'
                     className="size-8 rounded-full"
                   />
                 </MenuButton>
@@ -150,7 +156,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <DisclosurePanel className="sm:hidden">
+      {/* <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pt-2 pb-3">
           {navigation.map((item) => (
             <DisclosureButton
@@ -167,7 +173,7 @@ export default function Navbar() {
             </DisclosureButton>
           ))}
         </div>
-      </DisclosurePanel>
+      </DisclosurePanel> */}
 
       </div>
 

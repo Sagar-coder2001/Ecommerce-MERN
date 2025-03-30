@@ -40,10 +40,10 @@ export default function UserProfile() {
     setValue('name', address.name);
     setValue('email', address.email);
     setValue('city', address.city);
-    setValue('state', address.region);
-    setValue('pinCode', address.postal_code);
+    setValue('state', address.state);
+    setValue('pinCode', address.pinCode);
     setValue('country', address.country);
-    setValue('street', address.street_address);
+    setValue('street', address.street);
   };
 
   const handleAdd = (address) => {
@@ -85,13 +85,14 @@ export default function UserProfile() {
               </button>
               {showAddAddressForm ? (
                 <form
-                  className="bg-white px-5 py-12 mt-12"
+                  className="px-5 py-12 mt-12 rounded"
                   noValidate
                   onSubmit={handleSubmit((data) => {
                     console.log(data);
                     handleAdd(data);
                     reset();
                   })}
+                  style={{backgroundColor:'#FDFAF6'}}
                 >
                   <div className="space-y-12">
                     <div className="border-b border-gray-900/10 pb-12">

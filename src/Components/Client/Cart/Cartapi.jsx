@@ -43,11 +43,11 @@ export function addToCart(item) {
             method: 'PATCH',
             body: JSON.stringify(update),
             headers: {
-          'Authorization': `Bearer ${token}`,
+              'Authorization': `Bearer ${token}`,
               'content-type': 'application/json' },
           });
           
-          const responseText = await response.text();  // Use text() to get the raw response
+          const responseText = await response.json();  // Use text() to get the raw response
           console.log(responseText);  // Log the response text
           
           // If it's a valid JSON, parse it.
@@ -67,11 +67,10 @@ export function addToCart(item) {
             method: 'DELETE',
             headers: { 
           'Authorization': `Bearer ${token}`,
-              
               'content-type': 'application/json' },
           });
           const data = await response.json();
-          resolve({ data: { id: itemId } });
+          resolve( {data});
         });
       }
 

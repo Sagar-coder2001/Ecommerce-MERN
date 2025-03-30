@@ -9,6 +9,20 @@ const Userorderpage = () => {
   const product = useSelector(selectUserOrders);
   console.log(product)
 
+
+  if (!product || !product[0]) {
+    return (
+      <Layout>
+        <Protected>
+          <div className="lg:col-span-1 order-1 lg:order-2 bg-white rounded-lg p-6 shadow-sm mt-10">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">My Orders</h2>
+            <p>No orders available</p> {/* Display this if no product exists */}
+          </div>
+        </Protected>
+      </Layout>
+    );
+  }
+  
   return (
     <Layout>
       <Protected>

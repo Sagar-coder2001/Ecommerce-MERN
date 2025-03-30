@@ -13,7 +13,7 @@ const Adminsidebar = () => {
                     </svg>
                 </button>
 
-                <aside id="default-sidebar" class="bg-gray-800 absolute -z-10 fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+                <aside id="default-sidebar" class="bg-gray-500 absolute -z-10 fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
                     <div class="h-full px-3 py-4 overflow-y-auto bg-dark-50 dark:bg-gray-800">
                         <ul class="space-y-2 font-medium mt-16">
                             <li>

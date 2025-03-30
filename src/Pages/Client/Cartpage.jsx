@@ -19,10 +19,10 @@ export default function Cartpage() {
   
 
   const handleQuantity = (e , item) => {
-    dispatch(updateItemAsync(item.product));
+    dispatch(updateItemAsync({id:item.product.id, quantity: +e.target.value }));
   }
 
-  const handleremove = (item) => {
+  const handleremove = (e, item) => {
     dispatch(deleteItemAsync(item));
   }
 
@@ -31,20 +31,20 @@ export default function Cartpage() {
   return (
     <Layout>
 
-    <Dialog open={open} onClose={() => navigate('/')} className="relative z-10">
+    <Dialog open={open} onClose={() => navigate('/')} className="relative z-50">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
       />
 
-      <div className="fixed inset-0 overflow-hidden mt-10">
+      <div className="fixed inset-0 overflow-hidden mt-10 ">
         <div className="absolute inset-0 overflow-hidden">
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <DialogPanel
               transition
               className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-closed:translate-x-full sm:duration-700"
             >
-              <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+              <div className="flex h-full flex-col overflow-y-scroll shadow-xl" style={{backgroundColor:'#FDFAF6'}}>
                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                   <div className="flex items-start justify-between">
                     <DialogTitle className="text-lg font-medium text-gray-900">Shopping cart</DialogTitle>
@@ -97,7 +97,7 @@ export default function Cartpage() {
 
                                 <div className="flex">
                                   <button type="button" 
-                                  onClick={() => handleremove(product.product.id)}
+                                  onClick={(e) => handleremove(e , product.product.id)}
                                   className="font-medium text-indigo-600 hover:text-indigo-500">
                                     Remove
                                   </button>

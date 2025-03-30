@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { deleteItemAsync, selectCartItems, updateItemAsync } from '../../Features/Cartslice'
 import { useForm } from 'react-hook-form'
 import { selectLoggedInUser, updateUserAsync } from '../../Features/Authslice'
-import { addOrderToAsync, Orderplacedstatus } from '../../Features/Orderslice'
+import { addOrderToAsync, Orderplacedstatus, selectOrders } from '../../Features/Orderslice'
 import Protected from './Protected'
 import { selectUserInfo } from '../../Features/Userslice'
 
@@ -26,6 +26,7 @@ const Checkoutpage = () => {
   );
   const totalItems = products.reduce((total, item) => item.quantity + total, 0);
   const user = useSelector(selectUserInfo);
+  
 
   console.log(user)
 
@@ -50,7 +51,7 @@ const Checkoutpage = () => {
 
   const [selectaddress, setSelectAdress] = useState('')
   const [selectpaymentmode, setSelectPaymentMode] = useState('')
-  const currentorder = useSelector(Orderplacedstatus);  // `Orderplacedstatus` selector fetches currentorder
+  const currentorder = useSelector(selectOrders);  // `Orderplacedstatus` selector fetches currentorder
   console.log(currentorder)
 
 
@@ -73,7 +74,7 @@ const Checkoutpage = () => {
     // e.preventDefault();
     const order = { products, totalAmount, totalItems, user: user.id, selectpaymentmode, selectaddress, status: 'pending' }
     dispatch(addOrderToAsync(order));
-    navigate('/Ordersuccesspage');
+    navigate('/Ordersuccesspage/'+ currentorder.id);
   }
 
 
@@ -93,14 +94,14 @@ const Checkoutpage = () => {
     <Layout>
       <Protected>
 
-      <div className="container mx-auto py-4 mt-10">
+      <div className="container mx-auto py-4 mt-20">
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           {/* Personal Information - Takes 2/3 of the space on large screens */}
-          <div className="lg:col-span-2 order-2 lg:order-1 border-1 rounded-md p-2">
+          <div className="lg:col-span-2 order-2 lg:order-1 px-4 py-2 rounded-md p-2 bg-blue-50">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="space-y-8">
                 <div className="border-b border-gray-900/10 pb-8">
-                  <h2 className="text-xl font-semibold text-gray-900">Personal Information</h2>
+                  <h2 className="text-xl font-semibold text-gray-900 font-bold">Personal Information</h2>
                   <p className="mt-1 text-sm text-gray-600">Use a permanent address where you can receive mail.</p>
 
                   <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
@@ -354,7 +355,7 @@ const Checkoutpage = () => {
           </div>
 
           {/* Cart - Takes 1/3 of the space on large screens */}
-          <div className="lg:col-span-1 p-2 order-1 lg:order-2 bg-white rounded-lg shadow-sm border-1">
+          <div className="lg:col-span-1 p-2 order-1 lg:order-2 rounded-lg shadow-sm px-4" style={{backgroundColor:'#FDFAF6'}}>
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">Cart</h2>
 
             <div className="flow-root">

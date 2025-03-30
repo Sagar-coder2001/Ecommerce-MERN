@@ -352,7 +352,7 @@ export default function Adminhomepage() {
                         {currentProducts && currentProducts.length > 0 ? (
                               currentProducts.map((product) => (
                                 <Link to={`/Productdetailspage/${product.id}`} key={product.id}>
-                                  <div className="group relative bg-amber-100 p-2 rounded-md ">
+                                  <div className="group relative bg-blue-50 p-2 rounded-md ">
                                     <LazyLoadImage
                                       alt={product.images[1]}
                                       src={product.images[1]}
@@ -373,7 +373,7 @@ export default function Adminhomepage() {
                                   <div>
                                   <Link
                                     to={`/Adminproductformpage/edit/${product.id}`}
-                                    className="mt-2 w-full flex items-center justify-center rounded-md bg-yellow-400 k p-2 text-black-900"
+                                    className="mt-2 w-full flex items-center justify-center rounded-md bg-blue-100 k p-2 text-black-900"
                                   >Edit Product</Link>
                                 </div>
                                 </Link>

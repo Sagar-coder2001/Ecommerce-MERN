@@ -69,7 +69,7 @@ function App() {
       <Route path='/Signuppage' element={<Signuppage/>}/>
       <Route path='/Checkoutpage' element={<Checkoutpage/>}/>
       <Route path='/Productdetailspage/:id' element={<Productdetailspage/>}/>
-      <Route path='/Ordersuccesspage' element={<Ordersuccesspage/>}/>
+      <Route path='/Ordersuccesspage/:id' element={<Ordersuccesspage/>}/>
       <Route path='/Orderpage.jsx' element={<Orderpage/>}/>
       <Route path='/Userprofilepage' element={<Userprofilepage/>}/>
       <Route path='/Logoutpage' element={<Logoutpage/>}/>
