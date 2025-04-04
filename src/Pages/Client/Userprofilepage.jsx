@@ -280,6 +280,7 @@ export default function UserProfile() {
               <p className="mt-0.5 text-sm text-gray-500">Your Addresses :</p>
 
               {
+                  userInfo?.address && userInfo.address.length > 0 ? (
                 userInfo.address.map((address, index) => {
                   return(
                   <div key={index}>
@@ -535,6 +536,8 @@ export default function UserProfile() {
                   )
 
                 })
+              ) 
+              : ''
               }
 
 

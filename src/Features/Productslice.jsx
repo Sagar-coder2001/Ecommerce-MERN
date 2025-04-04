@@ -7,6 +7,7 @@ const initialState = {
   category : [],
   brands : [],
   totalItems: 0,
+  status: 'idle'
 }
 
 // export const fetchallproductasync = createAsyncThunk(
@@ -141,6 +142,8 @@ export const selectallproducts = (state) => state.product.data;
 export const selectproductById = (state) => state.product.selectedproduct;
 export const categories = (state) => state.product.category;
 export const brands = (state) => state.product.brands;
+
+export const selectstatus = (state) => state.product.status;
 
 
 export const selectTotalItems = (state) => state.product.totalItems;

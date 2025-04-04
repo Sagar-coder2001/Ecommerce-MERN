@@ -3,7 +3,7 @@ import Layout from '../../Components/Client/Layout/Layout'
 import Adminsidebar from './Adminsidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllOrdersAsync, selectOrders } from '../../Features/Orderslice'
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
+import { CartesianGrid, Line, LineChart, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 const Admindashboardpage = () => {
     const orders = useSelector(selectOrders)
@@ -13,15 +13,20 @@ const Admindashboardpage = () => {
         dispatch(fetchAllOrdersAsync());
     }, [dispatch]);
 
-    console.log(orders)
+    // Prepare data for the chart (e.g., totalAmount per order)
+    const chartData = orders.map((order, index) => ({
+        name: `Order ${index + 1}`,  // Or any other identifier (e.g., date)
+        totalAmount: order.totalAmount,
+    }));
+
     return (
         <div>
             <Layout>
                 <Adminsidebar />
                 <div className="ml-64 mt-20">
                     <div className="mt-4">
-                        <div className="grid">
-                            <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-2">
+                        <div className="grid px-2">
+                            <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2">
                                 <div className="bg-amber-200 p-2 text-white text-2xl text-bold text-center p-5 rounded-2xl">
                                     <p>Orders</p>
                                     <p>{orders.length}</p>
@@ -37,8 +42,18 @@ const Admindashboardpage = () => {
                             </div>
                         </div>
 
-                        <div className="mt-5 h-screen">
-                           
+                        {/* Chart Section */}
+                        <div className="mt-5 h-screen px-2">
+                            <ResponsiveContainer width="100%" height={300}>
+                                <LineChart data={chartData}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Line type="monotone" dataKey="totalAmount" stroke="#8884d8" />
+                                </LineChart>
+                            </ResponsiveContainer>
                         </div>
                     </div>
                 </div>
@@ -47,4 +62,4 @@ const Admindashboardpage = () => {
     )
 }
 
-export default Admindashboardpage
+export default Admindashboardpage;

@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import {
   Dialog,
   DialogBackdrop,
@@ -18,7 +18,7 @@ import Layout from '../../Components/Client/Layout/Layout'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectallproducts, fetchallproductfilterasync, categories, brands, fetchcategoryasync, fetchbrandasync, selectTotalItems } from '../../Features/Productslice'
+import { selectallproducts, fetchallproductfilterasync, categories, brands, fetchcategoryasync, fetchbrandasync, selectTotalItems, selectstatus } from '../../Features/Productslice'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -51,12 +51,12 @@ export default function Homepage() {
   const [itemsPerPage] = useState(9)
   const totalItems = products && products.totalItems ? products.totalItems : 0
 
+  const productStatus = useSelector(selectstatus);   
+
   // Get current products for the current page
   const indexOfLastProduct = page * itemsPerPage
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage
   const currentProducts = products && products.products ? products.products.slice(indexOfFirstProduct, indexOfLastProduct) : []
-
-  console.log(products)
 
   console.log(products)
 
@@ -114,6 +114,16 @@ export default function Homepage() {
     setPage(pageNumber)
   }
 
+
+
+  if (productStatus === 'loading') {
+
+    return (
+      <>
+      <div>Loading</div>
+      </>
+    )
+  }
 
   return (
     <Layout>

@@ -46,7 +46,9 @@ export default function Productdetailspage() {
           <div className="pt-6">
 
             {/* Image gallery */}
+            {/* Image gallery */}
             <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+              {/* Main image */}
               {product.images && product.images.length > 0 && (
                 <img
                   alt={product.images[0]}
@@ -54,23 +56,20 @@ export default function Productdetailspage() {
                   className="aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-auto"
                 />
               )}
+
+              {/* Thumbnail images */}
               <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                {/* <img
-                  alt={product.images[1]}
-                  src={product.images[1]}
-                  className="aspect-3/2 w-full rounded-lg object-cover"
-                /> */}
-                {/* <img
-                  alt={product.images[2]}
-                  src={product.images[2]}
-                  className="aspect-3/2 w-full rounded-lg object-cover"
-                /> */}
+                {product.images && product.images.length > 1 && (
+                  product.images.slice(1).map((image, index) => (
+                    <img
+                      key={index}
+                      alt={image}
+                      src={image}
+                      className="aspect-3/2 w-full rounded-lg object-cover"
+                    />
+                  ))
+                )}
               </div>
-              {/* <img
-                alt={product.images[3]}
-                src={product.images[3]}
-                className="aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-auto"
-              /> */}
             </div>
 
             {/* Product info */}

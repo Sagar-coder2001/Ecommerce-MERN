@@ -34,14 +34,20 @@ function App() {
   }, [dispatch, user]);
 
   useEffect(() => {
-
+  
     dispatch(fetchLoggedInUserAsync(user));
-  },[])
+  },[dispatch])
 
     useEffect(() => {
       
       dispatch(fetchUserOrderToAsync(user))
     }, [])
+
+
+    
+
+
+    
 
 
 

@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { checkUserAsync, selectError, selectLoggedInUser } from "../../Features/Authslice";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { fetchLoggedInUserAsync } from "../../Features/Userslice";
 
 export default function Loginpage() {
   const {
@@ -11,40 +13,59 @@ export default function Loginpage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
+  const [showAlert, setShowAlert] = useState(false);
 
   const dispatch = useDispatch();
-  const error = useSelector(selectError)
+  const error = useSelector(selectError);
   const user = useSelector(selectLoggedInUser);
 
-   const onSubmit = (data) => {
-         dispatch(
-           checkUserAsync({
-             email: data.email,
-             password: data.password,
-           })
-         );
-     }
-     
-     if (user) {
-      if (user.role === 'admin') {
-        return <Navigate to="/Adminhomepage" />;
-      } else {
-        return <Navigate to="/" />;
-      }
+  const onSubmit = (data) => {
+    dispatch(
+      checkUserAsync({
+        email: data.email,
+        password: data.password,
+      })
+    );
+    setShowAlert(true);
+
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+
+  };
+
+  if (user) {
+    if (user.role === 'admin') {
+      return <Navigate to="/Adminhomepage" />;
+    } else {
+      return <Navigate to="/" />;
     }
+  }
+
+  // useEffect(() => {
+  //   window.location.reload();
+  // },[])
+
+
+  
 
   return (
-    <>
-
-      <Layout>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-20 mb-10">
-          <div className="border-1 sm:mx-auto sm:w-full sm:max-w-sm px-4 py-1 rounded-2xl">
+    <Layout>
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-20 mb-10">
+        <div className="border-1 sm:mx-auto sm:w-full sm:max-w-sm px-4 py-1 rounded-2xl">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <UserCircleIcon className="w-10 h-10 mx-auto" />
             <h2 className="mt-3 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
               Sign in
             </h2>
           </div>
+          {/* show alrt message */}
+          {showAlert && (
+            <div className="mt-4 p-4 mb-4 text-sm text-green-800 bg-green-200 rounded-lg" role="alert">
+              <span className="font-medium">Successfully logged in!</span>
+            </div>
+          )}
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form action="#" method="POST" onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -56,22 +77,20 @@ export default function Loginpage() {
                   <input
                     id="email"
                     name="email"
-                    {
-                    ...register('email', {
-                      required: true,
+                    {...register("email", {
+                      required: "Email is required",
                       pattern: {
-                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, // Updated regex for email validation
-                        message: 'Invalid email address' // Optional: Custom error message
-                      }
-                    })
-                    }
+                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                        message: "Invalid email address",
+                      },
+                    })}
                     type="email"
                     autoComplete="email"
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
-                  {
-                    error && (<> <span className="text-rose-600">{error.message}</span> </>)
-                  }
+                  {errors.email && (
+                    <span className="text-rose-600 text-sm">{errors.email.message}</span>
+                  )}
                 </div>
               </div>
 
@@ -81,7 +100,7 @@ export default function Loginpage() {
                     Password
                   </label>
                   <div className="text-sm">
-                    <Link to={'/Forgotpasswordpage'} className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    <Link to="/Forgotpasswordpage" className="font-semibold text-indigo-600 hover:text-indigo-500">
                       Forgot password?
                     </Link>
                   </div>
@@ -90,21 +109,21 @@ export default function Loginpage() {
                   <input
                     id="password"
                     name="password"
-                    {
-                    ...register('password', { required: true,
+                    {...register("password", {
+                      required: "Password is required",
                       pattern: {
-                        value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/, // Password validation pattern
-                        message: 'Password must be at least 8 characters long, include at least one letter, one number, and one special character'
-                      }
-                     })
-                    }
+                        value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
+                        message:
+                          "Password must be at least 8 characters long, include at least one letter, one number, and one special character",
+                      },
+                    })}
                     type="password"
                     autoComplete="current-password"
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
-                  {
-                    error && (<> <span className="text-rose-600">{error.message}</span> </>)
-                  }
+                  {errors.password && (
+                    <span className="text-rose-600 text-sm">{errors.password.message}</span>
+                  )}
                 </div>
               </div>
 
@@ -118,19 +137,19 @@ export default function Loginpage() {
               </div>
             </form>
 
+            {error && <div className="text-center text-rose-600 mt-4">{error}</div>}
+
             <p className="mt-10 text-center text-sm/6 text-gray-500">
-              Dont have an account?{' '}
-              <Link to={'/Signuppage'}>
-                <a href="/Signuppage" className="font-semibold text-indigo-600 hover:text-indigo-500">
+              Don’t have an account?{' '}
+              <Link to="/Signuppage">
+                <a className="font-semibold text-indigo-600 hover:text-indigo-500">
                   Create an account
                 </a>
               </Link>
-
             </p>
           </div>
         </div>
-        </div>
-      </Layout>
-    </>
-  )
+      </div>
+    </Layout>
+  );
 }

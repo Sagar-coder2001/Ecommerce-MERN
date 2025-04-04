@@ -12,7 +12,9 @@ const Logoutpage = () => {
         localStorage.removeItem('role');
         localStorage.removeItem('id');
         dispatch(signoutAsync(user))
+        window.location.reload();
     })
+    
     return (
         <div>
             {
