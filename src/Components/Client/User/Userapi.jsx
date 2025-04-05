@@ -3,7 +3,6 @@ const token = localStorage.getItem('token')
 
 export function fetchUserorder(id) {
   return new Promise(async (resolve) => {
-    console.log("Sending user ID:", id); // Log the ID being sent
     
     const response = await fetch('http://localhost:8080/order/' + id, {
       method: 'GET',

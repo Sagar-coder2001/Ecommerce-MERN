@@ -31,18 +31,28 @@ const Userorderpage = () => {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">My Orders</h2>
           <div className="flow-root">
             <ul role="list" className="-my-6 divide-y divide-gray-200">
-              <div className='p-2 text-sm font-medium text-gray-700'>
-                Status =
-                {
-                  product[0].status
-                }
-              </div>
-              <div className='p-2 text-sm font-medium text-gray-700'>
-                craete =
-                {
-                  product[0].createdAt
-                }
-              </div>
+            <div className="space-y-4">
+  {/* Status Section */}
+  <div className="flex items-center justify-between mt-2 p-4 bg-white rounded-lg shadow-md border border-gray-200">
+    <div className="flex items-center">
+      <span className="text-2xl font-semibold text-gray-900">Status</span>
+    </div>
+    <span className="ml-2 text-sm font-medium text-gray-500">
+      {product[0].status}
+    </span>
+  </div>
+
+  {/* Created At Section */}
+  <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md border border-gray-200">
+    <div className="flex items-center">
+      <span className="text-2xl font-semibold text-gray-900">Created At</span>
+    </div>
+    <span className="ml-2 text-sm font-medium text-gray-500">
+      {product[0].createdAt}
+    </span>
+  </div>
+</div>
+
               {product[0].products.map((item) => (
                 <li key={item.product.id} className="flex py-6">
                   <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">

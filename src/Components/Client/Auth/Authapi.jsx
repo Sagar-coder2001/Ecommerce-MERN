@@ -24,7 +24,7 @@ export function checkUser (logininfo) {
             method: 'POST',
             body: JSON.stringify(logininfo),
             headers: {
-          'Authorization': `Bearer ${token}`,
+             'Authorization': `Bearer ${token}`,
               
               'content-type': 'application/json' },
             })

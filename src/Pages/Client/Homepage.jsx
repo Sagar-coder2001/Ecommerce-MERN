@@ -1,5 +1,5 @@
 
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogBackdrop,
@@ -15,15 +15,15 @@ import {
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import Layout from '../../Components/Client/Layout/Layout'
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectallproducts, fetchallproductfilterasync, categories, brands, fetchcategoryasync, fetchbrandasync, selectTotalItems, selectstatus } from '../../Features/Productslice'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Protected from './Protected'
-import { selectloggedinusertoken } from '../../Features/Authslice'
+import { GridLoader } from 'react-spinners'
+import Carousle from './Carousle'
 
 const sortOptions = [
   { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
@@ -120,7 +120,9 @@ export default function Homepage() {
 
     return (
       <>
-      <div>Loading</div>
+      <div className="flex items-center justify-center h-screen">
+      <GridLoader />
+      </div>
       </>
     )
   }
@@ -131,6 +133,8 @@ export default function Homepage() {
 
         <div className="bg-white mt-10">
           <div>
+
+            <Carousle/>
 
             {/* Mobile filter dialog */}
             <Dialog open={mobileFiltersOpen} onClose={setMobileFiltersOpen} className="relative z-40 lg:hidden">

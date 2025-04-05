@@ -9,7 +9,6 @@ const initialState = {
 export const fetchUserOrderToAsync = createAsyncThunk(
   'user/fetchUserorder',
   async (id) => {
-    console.log(id)
     const response = await fetchUserorder(id);
     return response.data;
   }

@@ -27,11 +27,10 @@ export function fetchproductsbycategory() {
 
       const data = await response.json();
       resolve({ data });
-      console.log(token)
+
 
     } catch (error) {
       reject(error);
-      console.log(token)
 
     }
   });
