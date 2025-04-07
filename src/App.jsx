@@ -25,38 +25,27 @@ import Admindashboardpage from './Pages/Admin/Admindashboardpage';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
+  console.log(user);
 
-  // Ensure that API call for fetching items only occurs if the user is logged in
   useEffect(() => {
-    if (user) {
-      dispatch(fechItemByProductIdAsync(user));
+    if (user) {  // Check if user is defined and has an ID
+      // Fetch items based on the user ID
+      dispatch(fechItemByProductIdAsync(user));  // Pass user.id instead of the entire user object
+      dispatch(fetchLoggedInUserAsync(user));  // Fetch logged-in user details
+      dispatch(fetchUserOrderToAsync(user));  // Fetch user orders
     }
   }, [dispatch, user]);
 
-  // Fetch logged-in user details only if the user exists
-  useEffect(() => {
-    if (user) {
-      dispatch(fetchLoggedInUserAsync(user));
-    }
-  }, [dispatch, user]);
+  // useEffect(() => {
+  //   // Check if the token and role are in localStorage when the page loads
+  //   const token = localStorage.getItem('token');
+  //   const role = JSON.parse(localStorage.getItem('role'));
 
-  // Fetch user orders only if the user exists
-  useEffect(() => {
-    if (user) {
-      dispatch(fetchUserOrderToAsync(user));
-    }
-  }, [dispatch, user]);
-
-  useEffect(() => {
-    // Check if the token and role are in localStorage when the page loads
-    const token = localStorage.getItem('token');
-    const role = JSON.parse(localStorage.getItem('role'));
-
-    // If both token and role exist, dispatch the login check action
-    if (token && role) {
-      dispatch(checkUserAsync(user)); // Check user data with token and role
-    }
-  }, [dispatch ]);
+  //   // If both token and role exist, dispatch the login check action
+  //   if (token && role) {
+  //     dispatch(checkUserAsync(user)); // Check user data with token and role
+  //   }
+  // }, [dispatch ]);
 
   return (
     <>

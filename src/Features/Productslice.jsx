@@ -10,14 +10,6 @@ const initialState = {
   status: 'idle'
 }
 
-// export const fetchallproductasync = createAsyncThunk(
-//   'product/fetchallproduct',
-//   async () => {
-//     const response = await fetchallproducts();
-//     return response.data;
-//   }
-// );
-
 export const fetchcategoryasync = createAsyncThunk(
   'product/fetchproductsbycategory',
   async () => {

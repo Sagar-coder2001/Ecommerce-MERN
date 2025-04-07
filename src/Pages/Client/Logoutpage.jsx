@@ -19,7 +19,7 @@ const Logoutpage = () => {
         <div>
             {
                 !user &&
-                <Navigate to={'/'} replace={true}></Navigate>
+                <Navigate to={'/Loginpage'} replace={true}></Navigate>
             }
             
         </div>

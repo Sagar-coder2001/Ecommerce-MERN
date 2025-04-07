@@ -43,7 +43,7 @@ export function fetchUserorder(id) {
   
   export function updateUser(update) {
     return new Promise(async (resolve) => {
-      const response = await fetch(`http://localhost:8080/users/${update.id}`,{
+      const response = await fetch(`http://localhost:8080/users/${update}`,{
         method: 'PATCH',
         body: JSON.stringify(update),
         headers: {

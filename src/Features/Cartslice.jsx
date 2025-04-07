@@ -47,8 +47,6 @@ export const fechItemByProductIdAsync = createAsyncThunk(
     }
   )
   
-
-
 export const CartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -75,7 +73,7 @@ export const CartSlice = createSlice({
       })
       .addCase(updateItemAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        const index = state.items.findIndex((item) => item.product.id === action.payload.id)
+        const index = state.items.findIndex((item) => item.id === action.payload.id)
         state.items[index] = (action.payload);
       })
       .addCase(deleteItemAsync.pending, (state) => {

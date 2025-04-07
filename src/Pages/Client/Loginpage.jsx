@@ -5,7 +5,7 @@ import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { checkUserAsync, selectError, selectLoggedInUser } from "../../Features/Authslice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchLoggedInUserAsync } from "../../Features/Userslice";
+import { fetchLoggedInUserAsync, selectUserInfo } from "../../Features/Userslice";
 
 export default function Loginpage() {
   const {

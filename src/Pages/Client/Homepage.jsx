@@ -24,6 +24,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Protected from './Protected'
 import { GridLoader } from 'react-spinners'
 import Carousle from './Carousle'
+import { selectLoggedInUser } from '../../Features/Authslice'
 
 const sortOptions = [
   { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
@@ -40,8 +41,9 @@ export default function Homepage() {
   const dispatch = useDispatch();
   const [filter, setFilter] = useState({})
   const [sort, SetSort] = useState('')
+  const user = useSelector(selectLoggedInUser);
   // const [allproduct , setAllProduct] = useState(null)
-
+  console.log(user)
 
   const products = useSelector(selectallproducts);
   const category = useSelector(categories);
@@ -95,10 +97,10 @@ export default function Homepage() {
   };
 
   useEffect(() => {
-    dispatch(fetchallproductfilterasync(filter, sort));
+    if(user){
+      dispatch(fetchallproductfilterasync(filter, sort));
+    }
   }, [dispatch, filter, sort])
-
-
 
   useEffect(() => {
     dispatch(fetchcategoryasync());
