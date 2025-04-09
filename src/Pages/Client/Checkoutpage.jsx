@@ -14,6 +14,7 @@ import { selectLoggedInUser, updateUserAsync } from '../../Features/Authslice'
 import { addOrderToAsync, Orderplacedstatus, selectOrders } from '../../Features/Orderslice'
 import Protected from './Protected'
 import { selectUserInfo } from '../../Features/Userslice'
+import ScrollTop from '../../Components/Client/Common/Scolltop'
 
 const Checkoutpage = () => {
   const navigate = useNavigate();
@@ -93,7 +94,7 @@ const Checkoutpage = () => {
   return (
     <Layout>
       <Protected>
-
+        <ScrollTop/>
       <div className="container mx-auto py-4 mt-20">
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           {/* Personal Information - Takes 2/3 of the space on large screens */}

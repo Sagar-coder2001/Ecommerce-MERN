@@ -7,6 +7,7 @@ import { brands, categories, selectproductById, createProductAsync, fetchproduct
 import { selectLoggedInUser } from '../../Features/Authslice';
 import ProtectedAdmin from './ProtectedAdmin';
 import Adminsidebar from './Adminsidebar';
+import ScrollTop from '../../Components/Client/Common/Scolltop';
 
 export default function Adminproductformpage() {
   const {
@@ -92,7 +93,7 @@ export default function Adminproductformpage() {
         } */}
       <ProtectedAdmin>
         <Adminsidebar />
-
+        <ScrollTop/>
         <div className='sm:ml-64 mt-10'>
           <form
             noValidate

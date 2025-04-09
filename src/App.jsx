@@ -9,7 +9,7 @@ import Signuppage from './Pages/Client/Signuppage';
 import Productdetailspage from './Pages/Client/Productdetailspage';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkUserAsync, selectLoggedInUser } from './Features/Authslice';
+import { selectLoggedInUser } from './Features/Authslice';
 import { fechItemByProductIdAsync } from './Features/Cartslice';
 import Ordersuccesspage from './Pages/Client/Ordersuccesspage';
 import Orderpage from './Pages/Client/Userorderpage';
@@ -36,17 +36,6 @@ function App() {
     }
   }, [dispatch, user]);
 
-  // useEffect(() => {
-  //   // Check if the token and role are in localStorage when the page loads
-  //   const token = localStorage.getItem('token');
-  //   const role = JSON.parse(localStorage.getItem('role'));
-
-  //   // If both token and role exist, dispatch the login check action
-  //   if (token && role) {
-  //     dispatch(checkUserAsync(user)); // Check user data with token and role
-  //   }
-  // }, [dispatch ]);
-
   return (
     <>
       <BrowserRouter>
@@ -63,6 +52,9 @@ function App() {
           <Route path='/Userprofilepage' element={<Userprofilepage />} />
           <Route path='/Logoutpage' element={<Logoutpage />} />
           <Route path='/Forgotpasswordpage' element={<Forgotpasswordpage />} />
+
+
+          {/* Admin Routes */}
           <Route path='/Adminhomepage' element={<Adminhomepage />} />
           <Route path='/Admindashboardpage' element={<Admindashboardpage />} />
           <Route path='/Adminproductformpage' element={<Adminproductformpage />} />

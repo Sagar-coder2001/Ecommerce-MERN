@@ -15,7 +15,7 @@ import {
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import Layout from '../../Components/Client/Layout/Layout'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectallproducts, fetchallproductfilterasync, categories, brands, fetchcategoryasync, fetchbrandasync, selectTotalItems, selectstatus } from '../../Features/Productslice'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
@@ -25,6 +25,7 @@ import Protected from './Protected'
 import { GridLoader } from 'react-spinners'
 import Carousle from './Carousle'
 import { selectLoggedInUser } from '../../Features/Authslice'
+import ScrollTop from '../../Components/Client/Common/Scolltop'
 
 const sortOptions = [
   { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
@@ -116,7 +117,15 @@ export default function Homepage() {
     setPage(pageNumber)
   }
 
-
+    // const role = JSON.parse(localStorage.getItem('role'));
+    // if (role === 'admin') {
+    //   return <Navigate to="/Adminhomepage" />;
+    // } else if (role === 'user') {
+    //   return <Navigate to="/" />;
+    // } 
+    // else{
+    //   return <Navigate to="/Loginpage" />;
+    // }
 
   if (productStatus === 'loading') {
 
@@ -132,7 +141,7 @@ export default function Homepage() {
   return (
     <Layout>
       <Protected>
-
+      
         <div className="bg-white mt-10">
           <div>
 

@@ -4,7 +4,6 @@ exports.fetchOrdersByUser = async (req, res) => {
   const { id } = req.params; 
   try {
     const orders = await Order.find({user: id});
-    console.log("Carts fetched:", orders);
     res.status(200).json(orders);
     console.log("fetch order", orders)
   } catch (err) {

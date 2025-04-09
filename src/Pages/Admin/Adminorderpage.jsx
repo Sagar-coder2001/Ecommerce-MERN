@@ -10,6 +10,7 @@ import {fetchAllOrdersAsync, selectOrders, updateOrderAsync } from '../../Featur
 import ProtectedAdmin from './ProtectedAdmin';
 import Layout from '../../Components/Client/Layout/Layout';
 import Adminsidebar from './Adminsidebar';
+import ScrollTop from '../../Components/Client/Common/Scolltop';
 
 function AdminOrders() {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function AdminOrders() {
 
     <ProtectedAdmin>
       <Adminsidebar/>
+      <ScrollTop/>
       <div className="overflow-x-auto sm:ml-64 py-6 mt-10 ">
           <div className="bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
             <div className="w-full p-4 h-screen mb-10">

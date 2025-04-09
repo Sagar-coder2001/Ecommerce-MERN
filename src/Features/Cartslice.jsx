@@ -58,7 +58,7 @@ export const CartSlice = createSlice({
       state.status = 'loading';
     })
     .addCase(addToCartAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+          state.status = 'idle';
           state.items.push(action.payload);
       })
     .addCase(fechItemByProductIdAsync.pending, (state) => {
@@ -73,9 +73,19 @@ export const CartSlice = createSlice({
       })
       .addCase(updateItemAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        const index = state.items.findIndex((item) => item.id === action.payload.id)
-        state.items[index] = (action.payload);
+      
+        // Find the index of the item that needs to be updated
+        const index = state.items.findIndex((item) => item?.id === action.payload.id);
+      
+        if (index !== -1) {
+          // Update the item directly in the state array (Immer handles immutability for you)
+          state.items[index] = action.payload;
+        } else {
+          console.error('Item not found in the cart');
+        }
       })
+      
+      
       .addCase(deleteItemAsync.pending, (state) => {
         state.status = 'loading';
       })

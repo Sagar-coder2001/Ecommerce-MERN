@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserOrderToAsync, selectUserOrders } from '../../Features/Userslice';
 import Layout from '../../Components/Client/Layout/Layout';
 import Protected from './Protected';
+import ScrollTop from '../../Components/Client/Common/Scolltop';
 
 
 const Userorderpage = () => {
@@ -10,10 +11,17 @@ const Userorderpage = () => {
   console.log(product)
 
 
+  const handleremove = (e, item) => {  
+    e.preventDefault();
+    // dispatch(deleteItemAsync(item.id));
+  }
+
+
   if (!product || !product[0]) {
     return (
       <Layout>
         <Protected>
+          <ScrollTop/>
           <div className="lg:col-span-1 order-1 lg:order-2 bg-white rounded-lg p-6 shadow-sm mt-10">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-6">My Orders</h2>
             <p>No orders available</p> {/* Display this if no product exists */}
@@ -87,7 +95,7 @@ const Userorderpage = () => {
 
                       <div className="flex">
                         <button
-                          onClick={(e) => handleremove(e, item.id)}
+                          onClick={(e) => handleremove(e, item)}
                           type="button"
                           className="font-medium text-primary hover:text-primary/80 text-xs"
                         >

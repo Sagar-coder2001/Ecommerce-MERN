@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { selectUserInfo, updateUserAsync } from '../../Features/Userslice';
 import Layout from '../../Components/Client/Layout/Layout'
 import Protected from './Protected';
+import ScrollTop from '../../Components/Client/Common/Scolltop';
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ export default function UserProfile() {
   return (
     <Layout>
       <Protected>
-
+        <ScrollTop/>
         <div>
           <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8 mt-10">
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">

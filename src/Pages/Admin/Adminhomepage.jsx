@@ -23,6 +23,7 @@ import Layout from '../../Components/Client/Layout/Layout'
 import { selectLoggedInUser } from '../../Features/Authslice'
 import ProtectedAdmin from './ProtectedAdmin'
 import Adminsidebar from './Adminsidebar'
+import ScrollTop from '../../Components/Client/Common/Scolltop'
 // import { selectLoggedInUser } from '../../Features/Authslice'
 
 const sortOptions = [
@@ -121,6 +122,7 @@ export default function Adminhomepage() {
     <Layout>
       <ProtectedAdmin>
         <Adminsidebar/>
+        <ScrollTop/>
 
       <div className="bg-white mt-10">
         <div className='sm:ml-64'>

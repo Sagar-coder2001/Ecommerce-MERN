@@ -4,6 +4,7 @@ import Adminsidebar from './Adminsidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllOrdersAsync, selectOrders } from '../../Features/Orderslice'
 import { CartesianGrid, Line, LineChart, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import ScrollTop from '../../Components/Client/Common/Scolltop'
 
 const Admindashboardpage = () => {
     const orders = useSelector(selectOrders)
@@ -23,7 +24,8 @@ const Admindashboardpage = () => {
         <div>
             <Layout>
                 <Adminsidebar />
-                <div className="ml-64 mt-20">
+                <ScrollTop/>
+                <div className="overflow-x-auto sm:ml-64 py-6 mt-10 ">
                     <div className="mt-4">
                         <div className="grid px-2">
                             <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2">

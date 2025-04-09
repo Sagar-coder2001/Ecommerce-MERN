@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import { addToCartAsync } from '../../Features/Cartslice'
 import { selectLoggedInUser, selectloggedinuserid } from '../../Features/Authslice'
 import Protected from './Protected'
+import ScrollTop from '../../Components/Client/Common/Scolltop'
 
 
 const reviews = { href: '#', average: 4, totalCount: 117 }
@@ -41,7 +42,7 @@ export default function Productdetailspage() {
   return (
     <Layout>
       <Protected>
-
+        <ScrollTop/>
         <div className="bg-white mt-10">
           <div className="pt-6">
 

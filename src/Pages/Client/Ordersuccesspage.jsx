@@ -6,6 +6,7 @@ import Layout from '../../Components/Client/Layout/Layout'
 import { useParams } from 'react-router-dom'
 import { resetCartAsync } from '../../Features/Cartslice'
 import Protected from './Protected'
+import ScrollTop from '../../Components/Client/Common/Scolltop'
 
 const Ordersuccesspage = () => {
 
@@ -23,7 +24,7 @@ const Ordersuccesspage = () => {
   return (
    <Layout>
     <Protected>
-
+      <ScrollTop/>
          <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8 mt-10">
           <div className="text-center">
             <p className="text-base font-semibold text-indigo-600">200</p>

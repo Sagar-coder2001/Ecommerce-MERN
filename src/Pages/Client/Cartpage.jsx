@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { deleteItemAsync, selectCartItems, updateItemAsync } from '../../Features/Cartslice'
+import ScrollTop from '../../Components/Client/Common/Scolltop'
 
 export default function Cartpage() {
   const [open, setOpen] = useState(true)
   const navigate = useNavigate();
   const products = useSelector(selectCartItems);
+  console.log(products)
   // const products = useSelector((state) => state.product.data)
   const dispatch = useDispatch();
   const totalAmount = products.reduce((amount, item) => item.product.price * item.quantity + amount,0);
@@ -19,18 +21,18 @@ export default function Cartpage() {
   
 
   const handleQuantity = (e , item) => {
-    dispatch(updateItemAsync({id:item.product.id, quantity: +e.target.value }));
+    dispatch(updateItemAsync({id:item.id, quantity: +e.target.value }));
   }
 
   const handleremove = (e, item) => {
-    dispatch(deleteItemAsync(item));
+    dispatch(deleteItemAsync(item.id));
   }
 
 
 
   return (
     <Layout>
-
+      <ScrollTop/>
     <Dialog open={open} onClose={() => navigate('/')} className="relative z-50">
       <DialogBackdrop
         transition
@@ -66,6 +68,7 @@ export default function Cartpage() {
                       <ul role="list" className="-my-6 divide-y divide-gray-200">
                         
                         {products.map((product , index) => (
+                        
                           <li key={index} className="flex py-6">
                             <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
                               <img  src={product.product.images[0]} className="size-full object-cover" />
@@ -97,7 +100,7 @@ export default function Cartpage() {
 
                                 <div className="flex">
                                   <button type="button" 
-                                  onClick={(e) => handleremove(e , product.product.id)}
+                                  onClick={(e) => handleremove(e , product)}
                                   className="font-medium text-indigo-600 hover:text-indigo-500">
                                     Remove
                                   </button>

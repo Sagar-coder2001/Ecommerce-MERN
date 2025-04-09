@@ -6,6 +6,7 @@ import { checkUserAsync, selectError, selectLoggedInUser } from "../../Features/
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchLoggedInUserAsync, selectUserInfo } from "../../Features/Userslice";
+import ScrollTop from "../../Components/Client/Common/Scolltop";
 
 export default function Loginpage() {
   const {
@@ -32,7 +33,6 @@ export default function Loginpage() {
     setTimeout(() => {
       setShowAlert(false);
     }, 3000);
-
   };
 
   if (user) {
@@ -52,6 +52,7 @@ export default function Loginpage() {
 
   return (
     <Layout>
+      <ScrollTop/>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-20 mb-10">
         <div className="border-1 sm:mx-auto sm:w-full sm:max-w-sm px-4 py-1 rounded-2xl">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">

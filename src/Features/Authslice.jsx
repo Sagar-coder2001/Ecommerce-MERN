@@ -4,7 +4,7 @@ import { checkUser, createUser, signout, updateuser } from '../Components/Client
 const initialState = {
   value: '',
   loggedInUserToken: localStorage.getItem('token') || '',  // Get token from localStorage
-  loggedinuser: JSON.parse(localStorage.getItem('role')) || null, 
+  // loggedinuser: JSON.parse(localStorage.getItem('role')) || null, 
   loggedinuser: JSON.parse(localStorage.getItem('id')) || null, 
 
 }
@@ -118,7 +118,6 @@ export const Authslice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { userLoggedin } = Authslice.actions
-
 
 export const selectLoggedInUser = (state) => state.auth.loggedinuser;
 export const selectError = (state) => state.auth.error;

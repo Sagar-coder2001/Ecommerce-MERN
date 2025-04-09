@@ -38,27 +38,31 @@ export function addToCart(item) {
     }
 
     export function updateCart(update) {
-        return new Promise(async (resolve) => {
+      console.log('Sending update:', update); // Check if `update` is correct
+      return new Promise(async (resolve, reject) => {
+        try {
           const response = await fetch('http://localhost:8080/cart/' + update.id, {
             method: 'PATCH',
             body: JSON.stringify(update),
             headers: {
               'Authorization': `Bearer ${token}`,
-              'content-type': 'application/json' },
+              'Content-Type': 'application/json',
+            },
           });
-          
-          const responseText = await response.json();  // Use text() to get the raw response
-          console.log(responseText);  // Log the response text
-          
-          // If it's a valid JSON, parse it.
-          try {
-            const data = JSON.parse(responseText);
-            resolve({ data });
-          } catch (error) {
-            console.error('Failed to parse JSON:', error);
+          const responseText = await response.json();
+          console.log('Response from server:', responseText); // Log response to check server's response
+          if (response.ok) {
+            resolve({ data: responseText });
+          } else {
+            reject(new Error('Failed to update cart'));
           }
-        });
-      }
+        } catch (error) {
+          console.error('Error while updating cart:', error);
+          reject(error);
+        }
+      });
+    }
+    
 
       
       export function deleteCart(itemId) {

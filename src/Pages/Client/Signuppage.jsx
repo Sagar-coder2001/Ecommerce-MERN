@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { createUserAsync, selectLoggedInUser } from "../../Features/Authslice";
+import ScrollTop from "../../Components/Client/Common/Scolltop";
 
 export default function Signuppage() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ export default function Signuppage() {
 
   return (
     <Layout>
+      <ScrollTop/>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-20">
         <div className="border-1 sm:mx-auto sm:w-full sm:max-w-sm px-2 py-1 rounded-2xl">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">

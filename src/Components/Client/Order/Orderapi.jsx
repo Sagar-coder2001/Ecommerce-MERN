@@ -1,10 +1,6 @@
 
 const token = localStorage.getItem('token');
 
-
-
-
-
 export function addOrder(order) {
   return new Promise(async (resolve, reject) => {
     try {

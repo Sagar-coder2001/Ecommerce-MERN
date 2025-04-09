@@ -10,15 +10,18 @@ const cartSchema = new Schema({
     color: { type : Schema.Types.Mixed},
 })
 
-const virtual = cartSchema.virtual('id')
-virtual.get(function() {
-    return this._id;
-})
+cartSchema.virtual('id').get(function () {
+    return this._id.toString();  // Ensure it's a string
+});
+
  
-cartSchema.set('toJSON' , {
-    virtual : true,
+cartSchema.set('toJSON', {
+    virtuals: true,  // Ensure virtuals are included
     versionKey: false,
-    transform : function (doc , ret) { delete ret._id}
-})
+    transform: function (doc, ret) {
+        // We don't need to delete _id manually here, virtual 'id' will handle it
+        delete ret._id;  // Optionally remove _id from the response if needed
+    }
+});
 
 exports.Cart = mongoose.model('Cart' , cartSchema)
